@@ -20,7 +20,14 @@ case '':
 serveStaticFile(res, '/public/home.html', 'text/html')
 break
 case '/home':
-
+serveStaticFile(res, '/public/about.html', 'text/html')
+break
+case '/img/logo.png':
+serveStaticFile(res, '/public/img/logo.png', 'image/png')
+break
+default:
+serveStaticFile(res, '/public/404.html', 'text/html', 404)
+break
 }
 })
 server.listen(port, () => console.log(`server started on port ${port}; ` +
