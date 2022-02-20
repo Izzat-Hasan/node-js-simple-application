@@ -1,7 +1,7 @@
-const express = require('express')
-const expressHandlebars = require('express-handlebars')
+import express, { static } from 'express'
+import expressHandlebars from 'express-handlebars'
 
-const fortune = require('./lib/fortune.js')
+import { getFortune } from './lib/fortune.js'
 
 const app = express()
 
@@ -13,12 +13,12 @@ app.set('view engine', 'handlebars')
 
 const port = process.env.PORT || 3000
 
-app.use(express.static(__dirname + '/public'))
+app.use(static(__dirname + '/public'))
 
 app.get('/', (req, res) => res.render('home'))
 
 app.get('/about', (req, res) => {
-  res.render('about', { fortune: fortune.getFortune() })
+  res.render('about', { fortune: getFortune() })
 })
 
 // custom 404 page
